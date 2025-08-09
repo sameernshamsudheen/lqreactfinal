@@ -1,0 +1,119 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #00b5a5;
+  overflow-x: hidden;
+}
+
+.image_revealsection {
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+.image_revealrow {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 2rem;
+}
+
+.image_revealrow img {
+  width: 100%;
+  max-width: 300px;
+  filter: saturate(0);
+}
+
+.image_reveal_text_container {
+  position: absolute;
+  top: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  height: auto;
+  background: transparent;
+  z-index: 8;
+}
+
+.text_block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.text_block h1 {
+  font-size: 5rem;
+  text-align: center;
+}
+.text_block p {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
+}
+.mask-container {
+  width: 100vw;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  -webkit-mask: url("/maskimage.svg") center/contain no-repeat;
+  mask: url("/maskimage.svg") center/contain no-repeat;
+  -webkit-mask-size: 0%;
+  mask-size: 0%;
+  will-change: mask-size;
+
+  z-index: 10;
+}
+.imagereveal_banner {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100vh;
+}
+.banner_text {
+  border: 1px solid red;
+  position: absolute;
+  color: white;
+  font-size: 2rem;
+  top: 30%;
+  left: 50%;
+
+  transform:translate(-50%,50%);
+}
+/* Image inside mask: fill container but keep aspect ratio */
+
+/* Make it responsive */
+
+@media (max-width: 1024px) {
+  .image_revealrow img {
+    width: 75%;
+  }
+}
+
+@media (max-width: 768px) {
+  .image_revealrow img {
+    width: 35%;
+  }
+  .image_reveal_text_container {
+    top: 25%;
+    height: 300px;
+    padding: 1rem;
+  }
+}
