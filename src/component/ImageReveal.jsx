@@ -7,17 +7,24 @@ import { useNavigate } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 const ImageReveal = () => {
+  const navigate = useNavigate();
   const spotlightImagesRef = useRef(null);
   const maskContainerRef = useRef(null);
   const maskImageRef = useRef(null);
   const headlineElsRef = useRef([]);
-  const navigate = useNavigate()
 
   useEffect(() => {
-    const lenisInstance = new Lenis({ smooth: true });
+    // Disable smooth scroll on mobile (width <= 768px) for performance
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    const lenisInstance = new Lenis({
+      smooth: !isMobile,
+    });
 
     lenisInstance.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenisInstance.raf(time * 1000));
+
+    const rafCallback = (time) => lenisInstance.raf(time * 1000);
+    gsap.ticker.add(rafCallback);
     gsap.ticker.lagSmoothing(0);
 
     const spotlightImages = spotlightImagesRef.current;
@@ -25,18 +32,25 @@ const ImageReveal = () => {
     const maskImage = maskImageRef.current;
     const headlineEls = headlineElsRef.current;
 
+    const lastOpacities = new Array(headlineEls.length).fill(null);
+
+    let lastMaskSize = "";
+    let lastImageScale = null;
+    let lastSpotlightY = null;
+
     const st = ScrollTrigger.create({
       trigger: ".image_revealsection",
       start: "top top",
       end: `+=${window.innerHeight * 7}px`,
       pin: true,
       pinSpacing: true,
-      scrub: 1,
+      scrub: true,
       markers: false,
 
       onUpdate: (self) => {
         const progress = self.progress;
 
+        // Animate headline opacity efficiently
         const headlineStart = 0.0;
         const headlineEnd = 0.5;
         const totalHeadlines = headlineEls.length;
@@ -46,10 +60,10 @@ const ImageReveal = () => {
           const start = headlineStart + index * perHeadline;
           const end = start + perHeadline;
 
+          let opacity = 0;
           if (progress >= start && progress < end) {
             const localProgress = (progress - start) / perHeadline;
 
-            let opacity = 0;
             if (localProgress < 0.3) {
               opacity = localProgress / 0.3;
             } else if (localProgress > 0.7) {
@@ -57,39 +71,64 @@ const ImageReveal = () => {
             } else {
               opacity = 1;
             }
+          }
 
-            gsap.to(el, { opacity, duration: 0.1, ease: "power1.inOut" });
-          } else {
-            gsap.to(el, { opacity: 0, duration: 0.1, ease: "power1.inOut" });
+          if (lastOpacities[index] !== opacity) {
+            el.style.opacity = opacity;
+            lastOpacities[index] = opacity;
           }
         });
 
+        // Animate spotlight images Y position
+        let currentY;
         if (progress >= 0 && progress < 0.5) {
           const imageMoveProgress = progress / 0.5;
           const startY = 5;
           const endY = -100;
-          const currentY = startY + (endY - startY) * imageMoveProgress;
-          gsap.set(spotlightImages, { y: `${currentY}%` });
+          currentY = startY + (endY - startY) * imageMoveProgress;
         } else if (progress >= 0.5) {
-          gsap.set(spotlightImages, { y: `-100%` });
+          currentY = -100;
+        }
+        if (lastSpotlightY !== currentY) {
+          gsap.set(spotlightImages, { y: `${currentY}%` });
+          lastSpotlightY = currentY;
         }
 
+        // Animate mask container and mask image scale
         if (progress > 0.5 && progress < 0.8) {
           const maskProgress = (progress - 0.5) / 0.3;
           const maskSize = `${maskProgress * 450}%`;
           const imageScale = 1.5 - maskProgress * 0.5;
 
-          maskContainer.style.setProperty("-webkit-mask-size", maskSize);
-          maskContainer.style.setProperty("mask-size", maskSize);
-          gsap.set(maskImage, { scale: imageScale });
+          if (lastMaskSize !== maskSize) {
+            maskContainer.style.setProperty("-webkit-mask-size", maskSize);
+            maskContainer.style.setProperty("mask-size", maskSize);
+            lastMaskSize = maskSize;
+          }
+          if (lastImageScale !== imageScale) {
+            gsap.set(maskImage, { scale: imageScale });
+            lastImageScale = imageScale;
+          }
         } else if (progress <= 0.5) {
-          maskContainer.style.setProperty("-webkit-mask-size", "0%");
-          maskContainer.style.setProperty("mask-size", "0%");
-          gsap.set(maskImage, { scale: 1.5 });
+          if (lastMaskSize !== "0%") {
+            maskContainer.style.setProperty("-webkit-mask-size", "0%");
+            maskContainer.style.setProperty("mask-size", "0%");
+            lastMaskSize = "0%";
+          }
+          if (lastImageScale !== 1.5) {
+            gsap.set(maskImage, { scale: 1.5 });
+            lastImageScale = 1.5;
+          }
         } else if (progress >= 0.8) {
-          maskContainer.style.setProperty("-webkit-mask-size", "450%");
-          maskContainer.style.setProperty("mask-size", "450%");
-          gsap.set(maskImage, { scale: 1 });
+          if (lastMaskSize !== "450%") {
+            maskContainer.style.setProperty("-webkit-mask-size", "450%");
+            maskContainer.style.setProperty("mask-size", "450%");
+            lastMaskSize = "450%";
+          }
+          if (lastImageScale !== 1) {
+            gsap.set(maskImage, { scale: 1 });
+            lastImageScale = 1;
+          }
         }
       },
     });
@@ -97,12 +136,12 @@ const ImageReveal = () => {
     return () => {
       st.kill();
       lenisInstance.destroy();
-      gsap.ticker.remove(lenisInstance.raf);
+      gsap.ticker.remove(rafCallback);
     };
   }, []);
+
   return (
     <div>
-        <button onClick={()=>navigate("/about")}>click me</button>
       <section className="image_revealsection">
         <div className="image_reveal_text_container headline-sequence">
           {[1, 2, 3].map((i) => (
