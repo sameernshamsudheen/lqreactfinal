@@ -2,7 +2,10 @@
 LQI 30.7: Community
 Introduction
 LQ130.7 is a movement designed for the most curious minds in the world of technology & innovation. LQI 30.7 is a community that brings together thought leaders, unique professionals, and budding student talent who hold the potential to shape the future. LQI 30.7 is a spaceto make an impact as you become a part of a growing network of curious minds, who invent.
-Why community
+
+
+
+Why community?
 Whether you are a seasoned expert or an emerging talent, LQI 30.7 offers:
  	A growing network of thought leaders who challenge conventional thinking.
  	A launchpad for ideas, collaborations, and support
@@ -10,6 +13,10 @@ Whether you are a seasoned expert or an emerging talent, LQI 30.7 offers:
  	A chance to be part of something bigger than work, a shared purpose.
 What is in a name?
 Etymology of LQI 30.7
+
+
+
+
 Why join LQI 30.7?
 By joining LQI 30.7 you are accessing powerful ideas and bold collaboration, you get to learn, lead and be part of the stalwarts in digital and tech. Access powerful ideas and bold collaborations, learn, lead, and be visible among the best. Work on what matters, with those who make it better.
   Create a platform for  collaboration and networking Promote a culture of learning
@@ -36,17 +43,22 @@ Are you a student? We have you covered. You get opportunities for
  	Skill Building & Certification: Gain practical, future-focused skills through curated learning experiences.
  	Visibility & Recognition: Stand out to recruiters and mentors through performance and participation.
  	Career Pathways: Fast-track your entry into community partner companies once you prove your potential.
+
+
+
+
 How to join?
 We welcome experienced professionals with deep technical expertise and a strong track record in technology. You must be passionate about technology and ready to offer your support in shaping the future of technology. If you get an invitation to be part of this LQ130.7, that is because a likeminded professional has felt that you could add value to beyond what you are doing now.
 Ideal members have:
- 	Demonstrated excellence in innovative technologies.
- 	A proficient level of understanding on retail domain and business will be ideal, but we are open to diverse backgrounds.
- 	
+Demonstrated excellence in innovative technologies.
+A proficient level of understanding on retail domain and business will be ideal, but we are open to diverse backgrounds.
 A passion for sharing knowledge, mentoring, and driving meaningful change within the
 
-tech ecosystem.
- 	A solution oriented, innovative forward-thinking mindset
+tech ecosystem.A solution oriented, innovative forward-thinking mindset
 Click on the link below to express your interest in joining and key in a few details of yours. We will check the fitment to the LQI 30.7 community and update you about the further details.
 Please subscribe to our social channels and the community platform to stay updated on the progress of LQI 30.7. We will be running webinars, fire-side chats, tech workshops, hackathons and more from time to time and you may jump in when you see an area of interest comes up.
+
+
+
 Who's Behind LQI 30.7?
 LQI 30.7 is powered by Litmus7, a global leader in retail-led transformation. But this is not just our initiative, it is your platform. Litmus7 provides the foundation, resources, and vision. The gronft, strength, and success of this community comes from you, the members. Together, we create a quotient that defines what is next.
