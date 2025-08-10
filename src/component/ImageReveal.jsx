@@ -237,7 +237,7 @@ const ImageReveal = () => {
             const secondImg = revealImages[rowIndex * 2 + 1];
             return (
               <div className="image_revealrow" key={rowIndex}>
-                {firstImg && <img loading="lazy" src={firstImg} alt="" />}
+                {firstImg && <img  src={firstImg} alt="" />}
                 {secondImg && <img loading="lazy" src={secondImg} alt="" />}
               </div>
             );
