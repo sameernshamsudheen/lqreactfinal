@@ -12,10 +12,9 @@ const ImageReveal = () => {
     "/imagetwo.png",
     "/imagethree.png",
     "/imagefour.png",
- 
-   
+
     "/imageseven.png",
-  
+
     "/imagenine.png",
     "/imagenine.png",
     "/imagenine.png",
@@ -187,7 +186,7 @@ const ImageReveal = () => {
 
   // Effect to setup ScrollTrigger + Lenis
   useEffect(() => {
-    // const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const lenisInstance = new Lenis({ smooth: true });
 
     lenisInstance.on("scroll", ScrollTrigger.update);
@@ -201,7 +200,7 @@ const ImageReveal = () => {
       start: "top top",
       end: `+=${window.innerHeight * 7}px`,
       pin: true,
-      scrub: 0.5,
+      scrub: isMobile ? 0.5 : 1,
       markers: false,
       onUpdate: handleUpdate,
     });
@@ -237,7 +236,7 @@ const ImageReveal = () => {
             const secondImg = revealImages[rowIndex * 2 + 1];
             return (
               <div className="image_revealrow" key={rowIndex}>
-                {firstImg && <img  src={firstImg} alt="" />}
+                {firstImg && <img src={firstImg} alt="" />}
                 {secondImg && <img loading="lazy" src={secondImg} alt="" />}
               </div>
             );
@@ -256,7 +255,16 @@ const ImageReveal = () => {
           />
           <div className="join_container">
             <h1 className="banner_text">be the one to join</h1>
-            <button  onClick={() => window.location.href = "https://forms.cloud.microsoft/pages/responsepage.aspx?id=0QyJDJvRYU6SM9QVMV1Ex253J0F_AUhJsp7TZZx-3wRUNUJaWTBaU1JQTllTNVFFRjZSRTZRM1VQQy4u&route=shorturl"}  className="join_button"> Join Now </button>
+            <button
+              onClick={() =>
+                (window.location.href =
+                  "https://forms.cloud.microsoft/pages/responsepage.aspx?id=0QyJDJvRYU6SM9QVMV1Ex253J0F_AUhJsp7TZZx-3wRUNUJaWTBaU1JQTllTNVFFRjZSRTZRM1VQQy4u&route=shorturl")
+              }
+              className="join_button"
+            >
+              {" "}
+              Join Now{" "}
+            </button>
           </div>
         </div>
       </div>
