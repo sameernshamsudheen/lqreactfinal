@@ -12,17 +12,12 @@ const ImageReveal = () => {
     "/imagetwo.png",
     "/imagethree.png",
     "/imagefour.png",
+    "/imagefive.png",
+    "/imagesix.png",
     "/imageseven.png",
+    "/imageeight.png",
     "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
-    "/imagenine.png",
+  
   ];
   const spotlightImagesRef = useRef(null);
   const maskContainerRef = useRef(null);
@@ -63,9 +58,7 @@ const ImageReveal = () => {
     if (el) headlineElsRef.current[index] = el;
   }, []);
 
-  const setBenefitRef = useCallback((el, index) => {
-    if (el) benefitsRef.current[index] = el;
-  }, []);
+
 
   const handleUpdate = useCallback(
     (self) => {
@@ -102,9 +95,18 @@ const ImageReveal = () => {
       // --- Spotlight movement ---
       if (progress >= 0 && progress < 0.5) {
         const imageMoveProgress = progress / 0.5;
+
+        // Speed factor: >1 faster, <1 slower
+        const speedFactor = 1.5; // try 0.5 for slower, 2 for faster, etc.
+
         const startY = 5;
         const endY = -100;
-        const currentY = startY + (endY - startY) * imageMoveProgress;
+
+        // Multiply progress by speedFactor and clamp max to 1 (so it doesn't overshoot)
+        const adjustedProgress = Math.min(imageMoveProgress * speedFactor, 1);
+
+        const currentY = startY + (endY - startY) * adjustedProgress;
+
         gsap.set(spotlightImages, { y: `${currentY}%`, overwrite: "auto" });
       } else if (progress >= 0.5) {
         gsap.set(spotlightImages, { y: `-100%`, overwrite: "auto" });
@@ -166,7 +168,7 @@ const ImageReveal = () => {
       onUpdate: handleUpdate,
     });
 
-    // NEW — Animate benefits after mask expansion
+
 
     return () => {
       st.kill();
@@ -215,7 +217,7 @@ const ImageReveal = () => {
             ref={maskImageRef}
           >
             <div className="join_container">
-               <img  className="banner_text" src="/litmuslogo.webp" />
+              <img className="banner_text" src="/litmuslogo.webp" />
               <button
                 onClick={() =>
                   (window.location.href =
@@ -228,7 +230,6 @@ const ImageReveal = () => {
             </div>
 
             {/* NEW — Benefits animation items */}
-          
           </div>
         </div>
       </div>
