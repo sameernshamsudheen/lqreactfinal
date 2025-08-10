@@ -187,8 +187,8 @@ const ImageReveal = () => {
 
   // Effect to setup ScrollTrigger + Lenis
   useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const lenisInstance = new Lenis({ smooth: !isMobile });
+    // const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const lenisInstance = new Lenis({ smooth: true });
 
     lenisInstance.on("scroll", ScrollTrigger.update);
 
