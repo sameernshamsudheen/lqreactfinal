@@ -201,7 +201,7 @@ const ImageReveal = () => {
       start: "top top",
       end: `+=${window.innerHeight * 7}px`,
       pin: true,
-      scrub: true,
+      scrub: 0.5,
       markers: false,
       onUpdate: handleUpdate,
     });
