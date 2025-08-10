@@ -8,20 +8,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ImageReveal = () => {
   const revealImages = [
-    "/imageone.webp",
-    "/imagetwo.webp",
-    "/imagethree.webp",
-    "/imagefour.webp",
-    "/imagefive.webp",
-    "/imagesix.webp",
-    "/imageseven.webp",
-    "/imageeight.webp",
-    "/imagenine.webp",
-    "/imagenine.webp",
-    "/imagenine.webp",
-    "/imagenine.webp",
-    "/imagenine.webp",
-    "/imagenine.webp",
+    "/imageone.png",
+    "/imagetwo.png",
+    "/imagethree.png",
+    "/imagefour.png",
+ 
+   
+    "/imageseven.png",
+  
+    "/imagenine.png",
+    "/imagenine.png",
+    "/imagenine.png",
+    "/imagenine.png",
+    "/imagenine.png",
+    "/imagenine.png",
   ];
   const spotlightImagesRef = useRef(null);
   const maskContainerRef = useRef(null);
