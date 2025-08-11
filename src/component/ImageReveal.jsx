@@ -19,6 +19,10 @@ const ImageReveal = () => {
     "/imagenine.png",
     "/imageeleven.png",
     "/imagetwelve.png",
+    "/imagethirteen.png",
+      "/imagefourteen.png",
+        "/imagefifteen.png",
+
   ];
   const spotlightImagesRef = useRef(null);
   const maskContainerRef = useRef(null);
