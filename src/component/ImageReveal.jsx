@@ -17,7 +17,8 @@ const ImageReveal = () => {
     "/imageseven.png",
     "/imageeight.png",
     "/imagenine.png",
-  
+    "/imageeleven.png",
+    "/imagetwelve.png",
   ];
   const spotlightImagesRef = useRef(null);
   const maskContainerRef = useRef(null);
@@ -57,8 +58,6 @@ const ImageReveal = () => {
   const setHeadlineRef = useCallback((el, index) => {
     if (el) headlineElsRef.current[index] = el;
   }, []);
-
-
 
   const handleUpdate = useCallback(
     (self) => {
@@ -167,8 +166,6 @@ const ImageReveal = () => {
       markers: false,
       onUpdate: handleUpdate,
     });
-
-
 
     return () => {
       st.kill();
